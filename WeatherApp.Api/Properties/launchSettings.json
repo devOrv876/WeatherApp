@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "http": {
+    "WeatherApp.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -8,17 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5274"
-    },
-    "https": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7088;http://localhost:5274"
+      "applicationUrl": "https://localhost:7080;http://localhost:5079"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -41,8 +31,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:52503",
-      "sslPort": 44371
+      "applicationUrl": "http://localhost:12067",
+      "sslPort": 44301
     }
   }
 }
