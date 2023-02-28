@@ -6,7 +6,7 @@
         public TemperatureModel Temperature { get; set; }
         public double Humidity { get; set; }
         public double Pressure { get; set; }
-        public DateTime Sunset { get; set; }
-        public DateTime Sunrise { get; set; }
+        public int Sunset { get; set; }
+        public int Sunrise { get; set; }
     }
 }
