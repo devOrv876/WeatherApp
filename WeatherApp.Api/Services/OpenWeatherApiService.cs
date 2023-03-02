@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using WeatherApp.Api.HttpClients;
+using WeatherApp.Api.Exceptions;
+using WeatherApp.Api.HttpClients.Interfaces;
 using WeatherApp.Api.Models;
 
 namespace WeatherApp.Api.Services
@@ -7,17 +8,27 @@ namespace WeatherApp.Api.Services
     public class OpenWeatherApiService: IOpenWeatherApiService
     {
         private readonly IOpenWeatherHttpClient _openWeatherHttpClient;
+        private readonly ILogger<OpenWeatherApiService> _logger;
 
-        public OpenWeatherApiService(IOpenWeatherHttpClient openWeatherHttpClient)
+        public OpenWeatherApiService(IOpenWeatherHttpClient openWeatherHttpClient, ILogger<OpenWeatherApiService> logger)
         {
            _openWeatherHttpClient = openWeatherHttpClient;
+            _logger = logger;
         }
 
         public async Task<WeatherModel> GetWeatherAsync(double latitude, double longitude)
         {
-            var results = await _openWeatherHttpClient.GetWeatherForLocationAsync("", "");
-            var weatherData = MapWeatherData(results);
-            return weatherData;
+            try
+            {
+                var results = await _openWeatherHttpClient.GetWeatherForLocationAsync(latitude, latitude);
+                var weatherData = MapWeatherData(results);
+                return weatherData;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                throw;
+            }
         }
 
         private WeatherModel MapWeatherData(OpenWeatherResponseModel model)

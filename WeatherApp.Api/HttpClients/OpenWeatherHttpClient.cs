@@ -1,27 +1,27 @@
 ﻿using Newtonsoft.Json;
 using System.Net.Http;
+using WeatherApp.Api.HttpClients.Interfaces;
 using WeatherApp.Api.Models;
 
 namespace WeatherApp.Api.HttpClients
 {
-    public class OpenWeatherHttpClient: IOpenWeatherHttpClient
+    public class OpenWeatherHttpClient: HttpClientBase, IOpenWeatherHttpClient
     {
-        private readonly HttpClient _httpClient;
-
+        private readonly ILogger<OpenWeatherHttpClient> _logger;
         private const string APIKEY = "112a15bc6fdd7f12cac09a3f9d471d77";
 
 
-        public OpenWeatherHttpClient(HttpClient httpClient)
+        public OpenWeatherHttpClient(HttpClient httpClient, ILogger<OpenWeatherHttpClient> logger):base(httpClient)
         {
-            _httpClient = httpClient;
+            _logger = logger;
         }
 
 
-        public async Task<OpenWeatherResponseModel> GetWeatherForLocationAsync(string latitude,string longitude)
+        public async Task<OpenWeatherResponseModel> GetWeatherForLocationAsync(double latitude,double longitude)
         {
             try
             {
-                string requeststring = $"onecall?lat={latitude}&lon={longitude}&exclude=hourly,daily&appid={APIKEY}";
+                string requeststring = $"onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={APIKEY}";
 
                 var response = await SendRequest(requeststring);
 
@@ -33,17 +33,12 @@ namespace WeatherApp.Api.HttpClients
             }
             catch (Exception ex)
             {
-                //TODO: Logger ex
+                _logger.LogCritical(ex.Message, ex);
                 throw;
             }
 
         }
 
-        private async Task<HttpResponseMessage> SendRequest(string httpRequest)
-        {
-                var response = await _httpClient.GetAsync(httpRequest);
-                return response.EnsureSuccessStatusCode();
-        }
 
     }
 }

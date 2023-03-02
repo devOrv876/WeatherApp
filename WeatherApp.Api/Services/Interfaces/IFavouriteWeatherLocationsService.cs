@@ -2,10 +2,10 @@
 {
     public interface IFavouriteWeatherLocationsService
     {
-        Task<List<FavouriteLocation>> GetFavouriteLocations();
-        
-        Task AddToFavourites(string latitude, string longititude, string city);
-
-        Task RemoveFromFavourites(string latitude, string longititude, string city);
+        Task<List<FavouriteLocation>> GetFavouriteLocationsAsync();
+        Task<FavouriteLocation> GetFavouriteLocationByIdAsync(Guid id);
+        Task<FavouriteLocation> AddToFavouritesAsync(double latitude, double longititude, string city);
+        Task<FavouriteLocation> UpdateFavouriteAsync(Guid id, double latitude, double longititude, string city);
+        Task<bool> RemoveFromFavouritesAync(Guid id);
     }
 }
