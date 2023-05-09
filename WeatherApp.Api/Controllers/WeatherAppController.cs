@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using WeatherApp.Api.Models;
-using WeatherApp.Api.Services.Interfaces;
+using WeatherApp.Api.Queries;
+using WeatherApp.Aplication.Models;
 
 namespace WeatherApp.Api.Controllers
 {
@@ -10,11 +11,11 @@ namespace WeatherApp.Api.Controllers
     [ApiController]
     public class WeatherAppController : ControllerBase
     {
-        private readonly IOpenWeatherApiService _weatherService;
+        private readonly IMediator _mediatR;
 
-        public WeatherAppController(IOpenWeatherApiService weatherService)
+        public WeatherAppController( IMediator mediatR)
         {
-            _weatherService = weatherService;
+            _mediatR = mediatR;
         }
 
         [HttpGet]
@@ -22,7 +23,7 @@ namespace WeatherApp.Api.Controllers
         [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new string[] { nameof(WeatherRequestModel.Latitude), nameof(WeatherRequestModel.Longitude) })]
         public async Task<IActionResult> Get([FromQuery] WeatherRequestModel request)
         {
-            var result = await _weatherService.GetWeatherAsync(request.Longitude, request.Latitude);
+            var result = await _mediatR.Send(new GetWeatherQuery(request.Longitude, request.Latitude));
             return Ok(result);
         }
 

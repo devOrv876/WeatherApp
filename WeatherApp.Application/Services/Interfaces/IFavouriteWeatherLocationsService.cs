@@ -1,4 +1,6 @@
-﻿namespace WeatherApp.Api.Services.Interfaces
+﻿using WeatherApp.Aplication.Models;
+
+namespace WeatherApp.Application.Services.Interfaces
 {
     public interface IFavouriteWeatherLocationsService
     {

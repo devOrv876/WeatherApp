@@ -1,8 +1,10 @@
-﻿using WeatherApp.Api.Models;
-using WeatherApp.Api.Services.Interfaces;
+﻿
+using Microsoft.Extensions.Logging;
+using WeatherApp.Aplication.Models;
+using WeatherApp.Application.Services.Interfaces;
 using WeatherApp.Infrastructure.Interfaces;
 
-namespace WeatherApp.Api.Services
+namespace WeatherApp.Application.Services
 {
     public class FavouriteWeatherLocationsService : IFavouriteWeatherLocationsService
     {

@@ -1,4 +1,4 @@
-﻿namespace WeatherApp.Api.Models
+﻿namespace WeatherApp.Aplication.Models
 {
     public class OpenWeatherResponseModel
     {

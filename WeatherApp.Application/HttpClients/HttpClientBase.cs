@@ -1,4 +1,4 @@
-﻿namespace WeatherApp.Api.HttpClients
+﻿namespace WeatherApp.Application.HttpClients
 {
     public class HttpClientBase
     {

@@ -1,6 +1,6 @@
-﻿using WeatherApp.Api.Models;
+﻿using WeatherApp.Aplication.Models;
 
-namespace WeatherApp.Api.HttpClients.Interfaces
+namespace WeatherApp.Applcation.HttpClients.Interfaces
 {
     public interface IOpenWeatherHttpClient
     {

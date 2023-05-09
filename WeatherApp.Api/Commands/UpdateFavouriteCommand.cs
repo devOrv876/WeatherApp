@@ -1,17 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MediatR;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using WeatherApp.Aplication.Models;
 
 namespace WeatherApp.Api.Commands
 {
-    public class UpdateFavouriteCommand
-    {
-        [Required]
-        public Guid Id { get; set; }
-        [Required]
-        public double Latitude { get; set; }
-        [Required]
-        public double Longitude{ get; set; }
-        [Required]
-        public string Name { get; set; } = "";
-        
-    }
+    public record UpdateFavouriteCommand(Guid Id, double Latitude, double Longitude, string Name): IRequest<FavouriteLocation>;
 }
