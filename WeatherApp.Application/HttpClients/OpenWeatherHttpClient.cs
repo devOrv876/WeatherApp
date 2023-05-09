@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Net.Http;
-using WeatherApp.Api.HttpClients.Interfaces;
-using WeatherApp.Api.Models;
+using WeatherApp.Aplication.Models;
+using WeatherApp.Applcation.HttpClients.Interfaces;
 
-namespace WeatherApp.Api.HttpClients
+namespace WeatherApp.Application.HttpClients
 {
     public class OpenWeatherHttpClient: HttpClientBase, IOpenWeatherHttpClient
     {

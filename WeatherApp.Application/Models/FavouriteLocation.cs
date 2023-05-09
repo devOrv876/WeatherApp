@@ -1,6 +1,5 @@
-﻿using WeatherApp.Api.Models;
-
-namespace WeatherApp.Api.Services.Interfaces
+﻿
+namespace WeatherApp.Aplication.Models
 {
     public class FavouriteLocation : WeatherModel
     {
